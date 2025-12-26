@@ -3,3 +3,9 @@
 #### Edit user-data file and ubuntu.pkr.hcl. 
 
 #### You chang user and password...
+
+#### CLI:
+
+#### packer init .
+
+#### packer build .\ubuntu.pkr.hcl
