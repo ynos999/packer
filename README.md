@@ -1,2 +1,5 @@
-### Packer create Ubuntu server with Virtualbox and finally we have folder output-ubuntu with .ovf, .vmdk. #### Edit user-data file and ubuntu.pkr.hcl. 
+### Packer create Ubuntu server with Virtualbox and finally we have folder output-ubuntu with .ovf, .vmdk. 
+
+#### Edit user-data file and ubuntu.pkr.hcl. 
+
 #### You chang user and password...
