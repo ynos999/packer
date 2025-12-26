@@ -22,5 +22,7 @@ autoinstall:
     - curtin in-target --target=/target -- systemctl enable ssh
     - "echo 'packer ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/packer"
     - "chmod 440 /target/etc/sudoers.d/packer"
+    - "curtin in-target --target=/target -- groupadd -f docker"
+    - "curtin in-target --target=/target -- usermod -aG docker {{ identity.username }}"
     - "curtin in-target --target=/target -- sed -i 's/^#\\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config"
   reboot: yes
