@@ -1,0 +1,26 @@
+#cloud-config
+autoinstall:
+  version: 1
+  refresh-installer:
+    update: no
+  identity:
+    hostname: ubuntu-server
+    username: packer
+    # sudo apt install -y whois
+    # mkpasswd -m sha-512 packer
+    password: "$6$e7nalFEjsoeeySo0$0XgPMtxjIrSYKqBIFh4zM.36sHmisSaUA2c9lKba1oIaLkIj10MP8VqOQUL98qn6fcWAN9R2M9tKRD3FFOUe7." 
+  locale: en_US
+  keyboard:
+    layout: us
+  ssh:
+    install-server: true
+    allow-pw: true
+  storage:
+    layout:
+      name: direct
+  late-commands:
+    - curtin in-target --target=/target -- systemctl enable ssh
+    - "echo 'packer ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/packer"
+    - "chmod 440 /target/etc/sudoers.d/packer"
+    - "curtin in-target --target=/target -- sed -i 's/^#\\?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config"
+  reboot: yes
